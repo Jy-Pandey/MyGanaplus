@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="experts.css">
+    <title>Music Recommendation System</title>
+</head>
+<body>
+    <h1>Music Recommendation System</h1>
+
+    <div class="row box1">
+    <div>
+    <label for="mood">Mood</label>
+    <input type="text" id="mood" placeholder="Enter your mood">
+    </div>
+
+    <div>
+    <label for="artist">Preferred Artist</label>
+    <input type="text" id="artist" placeholder="Enter your preferred artist">
+    </div>
+
+    <div>
+    <label for="interest">Interest</label>
+    <input type="text" id="interest" placeholder="Enter your music interest">
+    </div>
+    
+    </div>
+    
+    <button onclick="recommendMusic()">Get Recommendations</button>
+
+    <h2 id="recommend">Recommendations:</h2>
+    <ul id="recommendations"></ul>
+    
+
+    <script>
+        function recommendMusic() {
+            // Get user inputs
+            var mood = document.getElementById('mood').value.toLowerCase();
+            var artist = document.getElementById('artist').value.toLowerCase();
+            var interest = document.getElementById('interest').value.toLowerCase();
+
+            // Call expert system logic
+            var recommendations = getMusicRecommendations(mood, artist, interest);
+
+            // Display recommendations
+            displayRecommendations(recommendations);
+        }
+
+        function getMusicRecommendations(mood, artist, interest) {
+            // Simplified expert system rules
+            var recommendations = [];
+
+            // Mood analysis
+            if (mood === 'energetic') {
+                recommendations.push('Song 1', 'Kesariya From "Bramhastra"');
+            } else if (mood === 'relaxed') {
+                recommendations.push(' Song 1', 'Doobey From "Gehraiyan"');
+            } else if (mood === 'sad') {
+                recommendations.push(' Song 1', 'Yaad Na Aaye From "yaariyan"');
+            } 
+            else {
+                recommendations.push('Generic Song :', 'Udd Ja Kaale Kava From "Gadar2"');
+            }
+
+            // Artist preferences
+            if (artist === 'arijit') {
+                recommendations.push('Song by Arijit Singh', 'Fitoor From "Shamshera"');
+            } else if (artist === 'neha') {
+                recommendations.push('Song by Neha Kakkar', 'Gaddi Kaali Album Song');
+            }
+
+            // Interest matching
+            if (interest === 'rock') {
+                recommendations.push('Rock Song 1', 'Dilbar From "Satyamev Jayte"');
+            } else if (interest === 'pop') {
+                recommendations.push('Pop Song 1', 'Leke Prabhu Ka Naam');
+            }
+
+            return recommendations;
+        }
+
+        function displayRecommendations(recommendations) {
+            var recommendationsList = document.getElementById('recommendations');
+            recommendationsList.innerHTML = ''; // Clear previous recommendations
+
+            recommendations.forEach(function (recommendation) {
+                var listItem = document.createElement('li');
+                listItem.textContent = recommendation;
+                recommendationsList.appendChild(listItem);
+            });
+        }
+    </script>
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+</body>
+</html>
